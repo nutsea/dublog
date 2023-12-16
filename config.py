@@ -1,4 +1,3 @@
-#host = "79.174.95.252"
 host = "localhost"
 user = "shipper"
 password = "ship"

@@ -90,25 +90,13 @@ def print_all_commands(call):
     bot.send_message(call.message.chat.id, text= "Приложение тут", reply_markup=k)
     variable.set_action(call.message.chat.id, 0)
   if call.data == "1":
-    try:
-      connection = psycopg2.connect(
-          host=host,
-          user=user,
-          password=password,
-          database=db_name    
-      )
-      connection.autocommit = True
-    except ZeroDivisionError as e:
-      # Обработка исключения
-      print(f"Произошла ошибка: {e}")
-    except Exception as e:
-      # Обработка других исключений (любое исключение, которое является подклассом Exception)
-      print(f"Произошла другая ошибка: {e}")
-    else:
-      # Код, который выполнится, если исключение не произошло
-      print("Исключение не произошло.")
-
-    print('yes')
+    connection = psycopg2.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=db_name    
+    )
+    connection.autocommit = True
 
     # #     connection.commit()
     with connection.cursor() as cursor:
@@ -215,7 +203,7 @@ def print_all_commands(call):
     kb_change_trak = types.InlineKeyboardMarkup(row_width=1)
     k3 = types.InlineKeyboardButton(text="НАЗАД",callback_data="back") 
     kb_change_trak.add(k3)
-    bot.send_message(call.message.chat.id, "Введите новый трек номер и его статус через пробел\n\nПример (AE14713894 1)\n\n1. Выкуплен, в пути склад\n2. Принят на складе, оформляется\n3. Заказ в пути\n4. Сортируется в Москве be\n5. Передан в СДЭК\n6. Получен клиентом",reply_markup=kb_change_trak)
+    bot.send_message(call.message.chat.id, "Введите новый трек номер и его статус через пробел\n\nПример (AE14713894 1)\n\n1. Выкуплен, ожидается на складе в Китае\n2. Принят на складе в Китае\n3. Заказ едет в Москву\n4. Прибыл на склад в Москве\n5. Передано в CDEK / Самовывоз\n6. Получен клиентом",reply_markup=kb_change_trak)
   if call.data == "ft":
     variable.set_action(call.message.chat.id, 3)
     kb_change_trak = types.InlineKeyboardMarkup(row_width=1)
@@ -287,7 +275,7 @@ def handle_text(message):
             kb_change_trak = types.InlineKeyboardMarkup(row_width=1)
             k3 = types.InlineKeyboardButton(text="НАЗАД",callback_data="back") 
             kb_change_trak.add(k3)
-            bot.send_message(message.chat.id, "УЖЕ СУЩЕСТВУЕТ\nВведите новый трек номер и его статус через пробел\n\nПример (AE14713894 1)\n\n1. Выкуплен, в пути склад\n2. Принят на складе, оформляется\n3. Заказ в пути\n4. Сортируется в Москве be\n5. Передан в СДЭК\n6. Получен клиентом",reply_markup=kb_change_trak)
+            bot.send_message(message.chat.id, "УЖЕ СУЩЕСТВУЕТ\nВведите новый трек номер и его статус через пробел\n\nПример (AE14713894 1)\n\n1. Выкуплен, ожидается на складе в Китае\n2. Принят на складе в Китае\n3. Заказ едет в Москву\n4. Прибыл на склад в Москве\n5. Передано в CDEK / Самовывоз\n6. Получен клиентом",reply_markup=kb_change_trak)
       except:
         with connection.cursor() as cursor:
             cursor.execute(

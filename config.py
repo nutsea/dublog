@@ -1,4 +1,5 @@
-host = "194.58.98.156"
+#host = "79.174.95.252"
+host = "localhost"
 user = "shipper"
 password = "ship"
 db_name = "ship"

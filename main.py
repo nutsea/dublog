@@ -5,14 +5,15 @@ from config import host, user, password, db_name
 import time
 import utils
 
-admin = 5359516739
+admin = 750542575
+#admin = 5359516739
 variable = utils.Variable()
-bot = telebot.TeleBot("6727983935:AAHV3CGQwY1mCJ0JORZeb5WiCbbXAGlziCo")
+bot = telebot.TeleBot("6911089097:AAGz77qymun6deXWXpFN8eksaCc8CiVyIac")
 
 @bot.message_handler(commands=['start'])
 def stttt(message):
   k = types.InlineKeyboardMarkup(row_width=2)
-  k1 = types.InlineKeyboardButton(text="РАСЧЕТ / ОТСЛЕЖИВАНИЕ", web_app=types.WebAppInfo(url="https://main--dancing-cheesecake-968061.netlify.app"))
+  k1 = types.InlineKeyboardButton(text="РАСЧЕТ / ОТСЛЕЖИВАНИЕ", web_app=types.WebAppInfo(url="https://main--spontaneous-kashata-143d4f.netlify.app/"))
   k2 = types.InlineKeyboardButton(text="КУРС",callback_data="1")
   k3 = types.InlineKeyboardButton(text="ВОПРОСЫ / ОТВЕТЫ",callback_data="2")
   k4 = types.InlineKeyboardButton(text="ОТЗЫВЫ",callback_data="3")
@@ -27,6 +28,7 @@ def stttt(message):
 @bot.message_handler(commands=['admin'])
 def admmmmin(message):
   
+ if message.chat.id == admin or message.chat.id == 5359516739:
   kb_ad = types.InlineKeyboardMarkup(row_width=2)
   k1 = types.InlineKeyboardButton(text="КУРС",callback_data="curs")
   k2 = types.InlineKeyboardButton(text="ТРЕК",callback_data="trek")   
@@ -77,11 +79,11 @@ def print_all_commands(call):
     bot.send_message(call.message.chat.id,"https://www.dewu.com - ссылка для android/ios\n\nСсылка на Poizon в App Store - https://apps.apple.com/ru/app/得物-得到运动x潮流x好物/id1012871328",reply_markup=kb_change_curs)
   if call.data == "nazad":
     k = types.InlineKeyboardMarkup(row_width=2)
-    k1 = types.InlineKeyboardButton(text="РАCЧЕТ / ОТСЛЕЖИВАНИЕ", web_app=types.WebAppInfo(url="https://main--dancing-cheesecake-968061.netlify.app"))
+    k1 = types.InlineKeyboardButton(text="РАCЧЕТ / ОТСЛЕЖИВАНИЕ", web_app=types.WebAppInfo(url="https://main--spontaneous-kashata-143d4f.netlify.app/"))
     k2 = types.InlineKeyboardButton(text="КУРС",callback_data="1")
     k3 = types.InlineKeyboardButton(text="ВОПРОСЫ / ОТВЕТЫ",callback_data="2")
     k4 = types.InlineKeyboardButton(text="ОТЗЫВЫ",callback_data="3")
-    k5 = types.InlineKeyboardButton(text="МЕНЕДЖЕР",url="https://t.me/botfather")
+    k5 = types.InlineKeyboardButton(text="МЕНЕДЖЕР",url="https://t.me/dubrovskiylog")
     k6 = types.InlineKeyboardButton(text="Товары в наличии",callback_data="5")
     k7 = types.InlineKeyboardButton(text="Пополнение Alipay, Wecht",callback_data="6")
     k.row(k1).row(k2).add(k3,k4,k6,k7).row(k5)

@@ -418,12 +418,17 @@ def handle_text(message):
 
         # Чтение файла Excel
         df = pd.read_excel('uploaded_file.xlsx')
+        with connection.cursor() as cursor:
+              cursor.execute('''
+                  DELETE FROM orders
+              ''')
 
         # Добавление данных в базу данных
         for _, row in df.iterrows():
-            cursor.execute('''
-                INSERT INTO orders (track, status) VALUES (?, ?)
-            ''', (row[0], row[1]))
+            with connection.cursor() as cursor:
+              cursor.execute('''
+                  INSERT INTO orders (track, status) VALUES (?, ?)
+              ''', (row[0], row[1]))
 
         
 
